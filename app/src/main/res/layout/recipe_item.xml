@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp">
+
+        <ImageView
+            android:id="@+id/iv_recipe"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="18dp"
+            android:contentDescription="@string/accessibility_image_recipe"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_servings"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_recipe_name"
+            android:src="@drawable/ic_recipe_list" />
+
+        <TextView
+            android:id="@+id/txt_recipe_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:textSize="@dimen/txt_title_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_recipe"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Ice Cream Sandwich" />
+
+        <TextView
+            android:id="@+id/txt_servings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_subtitle_size"
+            app:layout_constraintEnd_toEndOf="@+id/txt_recipe_name"
+            app:layout_constraintStart_toStartOf="@+id/txt_recipe_name"
+            app:layout_constraintTop_toBottomOf="@+id/txt_recipe_name"
+            tools:text="Servings: 20" />
+
+        <TextView
+            android:id="@+id/txt_total_ingredients"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_subtitle_size"
+            app:layout_constraintEnd_toEndOf="@+id/txt_servings"
+            app:layout_constraintStart_toStartOf="@+id/txt_servings"
+            app:layout_constraintTop_toBottomOf="@+id/txt_servings"
+            tools:text="Total Ingredients: 10" />
+
+        <TextView
+            android:id="@+id/txt_total_steps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_subtitle_size"
+            app:layout_constraintEnd_toEndOf="@+id/txt_total_ingredients"
+            app:layout_constraintStart_toStartOf="@+id/txt_total_ingredients"
+            app:layout_constraintTop_toBottomOf="@+id/txt_total_ingredients"
+            tools:text="Total Steps: 20" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

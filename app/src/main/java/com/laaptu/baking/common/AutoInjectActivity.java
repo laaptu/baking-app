@@ -3,6 +3,10 @@ package com.laaptu.baking.common;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.squareup.otto.Bus;
+
+import javax.inject.Inject;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
@@ -18,6 +22,9 @@ public abstract class AutoInjectActivity extends AppCompatActivity {
     public abstract int getLayoutId();
 
     private CompositeDisposable disposables = new CompositeDisposable();
+
+    @Inject
+    public Bus eventBus;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +50,13 @@ public abstract class AutoInjectActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         clearDisposable();
+        eventBus.unregister(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        eventBus.register(this);
     }
 
     public void showToast(String message) {

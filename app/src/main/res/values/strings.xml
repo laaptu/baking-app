@@ -4,4 +4,13 @@
 
     <string name="error_fetching_recipes">Unable to fetch recipes</string>
     <string name="error_displaying_recipes">Unable to display empty recipes</string>
+    <string name="error_recipe_not_provided">Recipe not provided</string>
+
+    <string name="total_ingredients">Total ingredients: %d</string>
+    <string name="total_steps">Total steps: %d</string>
+    <string name="total_servings">Servings: %d</string>
+
+    <!--Accessiblity-->
+    <string name="accessibility_image_recipe">Image of recipe</string>
+    <string name="recipes_list">Recipes List</string>
 </resources>
