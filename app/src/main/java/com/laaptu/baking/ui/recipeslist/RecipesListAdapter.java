@@ -51,7 +51,8 @@ public class RecipesListAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
         Context context = holder.ivRecipe.getContext();
         holder.txtRecipeName.setText(recipe.name);
         holder.txtServings.setText(context.getString(R.string.total_servings, recipe.servings));
-        holder.txtTotalIngredients.setText(context.getString(R.string.total_ingredients, recipe.ingredients.size()));
+        holder.txtTotalIngredients.setText(context.getString(R.string.total_ingredients, recipe.ingredients
+                .size()));
         holder.txtTotalSteps.setText(context.getString(R.string.total_steps, recipe.steps.size()));
 
         imageLoader.loadImage(imageLoadOptionsBuilder.setImageUrl(

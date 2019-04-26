@@ -1,6 +1,7 @@
 package com.laaptu.baking.common;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.squareup.otto.Bus;
@@ -35,7 +36,8 @@ public abstract class AutoInjectActivity extends AppCompatActivity {
     }
 
     public <T> Observable<T> getMainThreadSubscription(Observable<T> observable) {
-        return observable.subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
+        return observable.subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public void addDisposable(Disposable disposable) {
@@ -61,6 +63,14 @@ public abstract class AutoInjectActivity extends AppCompatActivity {
 
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            supportFinishAfterTransition();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

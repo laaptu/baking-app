@@ -7,7 +7,10 @@ import android.os.Bundle;
 import com.laaptu.baking.R;
 import com.laaptu.baking.common.AutoInjectActivity;
 import com.laaptu.baking.data.models.Recipe;
+import com.laaptu.baking.ui.recipedetail.steps.RecipeStepsAdapter;
 import com.laaptu.baking.ui.recipeslist.RecipesListActivity;
+import com.laaptu.baking.ui.recipeslist.SpacingDecorator;
+import com.laaptu.baking.ui.recipeslist.SpacingDecorator.Arrangement;
 import com.laaptu.baking.utils.GeneralUtils;
 
 import org.parceler.Parcels;
@@ -16,6 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+
+import static androidx.recyclerview.widget.LinearLayoutManager.*;
 
 public class RecipeDetailActivity extends AutoInjectActivity {
 
@@ -35,11 +43,12 @@ public class RecipeDetailActivity extends AutoInjectActivity {
         return recipe;
     }
 
+    @BindView(R.id.rv_recipe_steps) RecyclerView rvRecipeSteps;
     private Recipe recipe;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_recipes_list;
+        return R.layout.activity_recipe_detail;
     }
 
     @Override
@@ -51,6 +60,18 @@ public class RecipeDetailActivity extends AutoInjectActivity {
             finish();
             return;
         }
+        getSupportActionBar().setTitle(recipe.name);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        showRecipeSteps();
+    }
+
+    private void showRecipeSteps() {
+        rvRecipeSteps.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        rvRecipeSteps.addItemDecoration(new SpacingDecorator((int) getResources()
+                .getDimension(R.dimen.item_space), Arrangement.VERTICAL));
+        rvRecipeSteps.setAdapter(new RecipeStepsAdapter(recipe.steps,
+                recipe.ingredients,
+                eventBus));
     }
 
 
