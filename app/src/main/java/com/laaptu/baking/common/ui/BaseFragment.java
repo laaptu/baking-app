@@ -24,11 +24,6 @@ public abstract class BaseFragment extends Fragment {
         AndroidSupportInjection.inject(this);
     }
 
-    @Override public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
-        AndroidSupportInjection.inject(this);
-    }
-
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater,
                                                  @Nullable ViewGroup container,
                                                  @Nullable Bundle savedInstanceState) {
