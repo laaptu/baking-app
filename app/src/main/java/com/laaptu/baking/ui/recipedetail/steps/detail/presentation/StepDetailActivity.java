@@ -1,4 +1,4 @@
-package com.laaptu.baking.ui.recipedetail.steps.detail.activity;
+package com.laaptu.baking.ui.recipedetail.steps.detail.presentation;
 
 import android.content.Context;
 import android.content.Intent;

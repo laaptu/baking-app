@@ -28,7 +28,7 @@
             android:name=".ui.recipeslist.RecipesListActivity"
             android:label="@string/recipes_list"/>
         <activity android:name=".ui.recipedetail.RecipeDetailActivity"/>
-        <activity android:name=".ui.recipedetail.steps.detail.activity.StepDetailActivity"/>
+        <activity android:name=".ui.recipedetail.steps.detail.presentation.StepDetailActivity"/>
     </application>
 
 </manifest>

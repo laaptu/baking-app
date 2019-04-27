@@ -54,7 +54,7 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     @Override public int getItemCount() {
-        return ingredients.size() + 1;
+        return steps.size() + 1;
     }
 
     @Override public int getItemViewType(int position) {

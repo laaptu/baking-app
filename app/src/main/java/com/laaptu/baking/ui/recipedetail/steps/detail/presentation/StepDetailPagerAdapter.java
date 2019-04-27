@@ -1,10 +1,9 @@
-package com.laaptu.baking.ui.recipedetail.steps.detail.activity;
+package com.laaptu.baking.ui.recipedetail.steps.detail.presentation;
 
 import android.content.Context;
 
 import com.laaptu.baking.R;
 import com.laaptu.baking.data.models.Step;
-import com.laaptu.baking.ui.recipedetail.steps.detail.StepDetailFragment;
 
 import java.util.List;
 

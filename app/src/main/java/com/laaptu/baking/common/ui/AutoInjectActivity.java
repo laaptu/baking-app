@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.DaggerAppCompatActivity;
 import dagger.android.support.HasSupportFragmentInjector;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -22,7 +23,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public abstract class AutoInjectActivity extends AppCompatActivity implements
+public abstract class AutoInjectActivity extends DaggerAppCompatActivity implements
         HasSupportFragmentInjector {
 
     @Inject DispatchingAndroidInjector<Fragment> supportFragmentInjector;

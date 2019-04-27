@@ -1,4 +1,4 @@
-package com.laaptu.baking.ui.recipedetail.steps.detail;
+package com.laaptu.baking.ui.recipedetail.steps.detail.presentation;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -106,7 +106,8 @@ public class StepDetailFragment extends BaseFragment {
     private void setupImage(String imageUrl) {
         if (isValidUrl(imageUrl)) {
             ivStepThumb.setVisibility(View.VISIBLE);
-            imageLoadOptionsBuilder.setImageUrl(step.thumbnailURL);
+            imageLoadOptionsBuilder.setImageUrl(step.thumbnailURL)
+                    .setErrorDrawable(R.drawable.ic_image_error);
             imageLoader.loadImage(imageLoadOptionsBuilder.build(), ivStepThumb);
         } else {
             ivStepThumb.setVisibility(View.GONE);

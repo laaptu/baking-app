@@ -1,8 +1,7 @@
 package com.laaptu.baking.di;
 
 import com.laaptu.baking.ui.recipedetail.RecipeDetailActivity;
-import com.laaptu.baking.ui.recipedetail.steps.detail.activity.StepDetailActivity;
-import com.laaptu.baking.ui.recipedetail.steps.detail.di.StepDetailFragmentProvider;
+import com.laaptu.baking.ui.recipedetail.steps.detail.presentation.StepDetailActivity;
 import com.laaptu.baking.ui.recipeslist.RecipesListActivity;
 import com.laaptu.baking.ui.splash.SplashActivity;
 
@@ -21,6 +20,6 @@ public abstract class ActivityModule {
     @ContributesAndroidInjector
     abstract RecipeDetailActivity bindRecipeDetailActivity();
 
-    @ContributesAndroidInjector(modules = StepDetailFragmentProvider.class)
+    @ContributesAndroidInjector
     abstract StepDetailActivity bindStepDetailActivity();
 }
