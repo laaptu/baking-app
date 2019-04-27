@@ -41,7 +41,7 @@ public class WidgetUpdater {
         Recipe recipe = widgetRecipeProvider.getRecipe();
         if (recipe != null) {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
-                    RecipeDetailActivity.getLaunchingIntent(context, recipe), 0);
+                    RecipeDetailActivity.getLaunchingIntent(context, recipe), PendingIntent.FLAG_UPDATE_CURRENT);
 
             RemoteViews views =
                     new RemoteViews(context.getPackageName(), R.layout.widget_recipe_view);
