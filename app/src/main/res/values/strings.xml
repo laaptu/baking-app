@@ -9,9 +9,12 @@
     <string name="total_ingredients">Total ingredients: %d</string>
     <string name="total_steps">Total steps: %d</string>
     <string name="total_servings">Servings: %d</string>
+    <string name="step">Step - %d</string>
 
     <!--Accessiblity-->
     <string name="accessibility_image_recipe">Image of recipe</string>
     <string name="recipes_list">Recipes List</string>
     <string name="ingredients">Ingredients</string>
+    <string name="accessibility_step_image">This is recipe step image</string>
+    <string name="error_no_recipe_steps">There aren\'t any recipe steps to show</string>
 </resources>

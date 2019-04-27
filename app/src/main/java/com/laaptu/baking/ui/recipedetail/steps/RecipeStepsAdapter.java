@@ -4,11 +4,11 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.laaptu.baking.R;
-import com.laaptu.baking.common.BaseViewHolder;
+import com.laaptu.baking.common.ui.BaseViewHolder;
 import com.laaptu.baking.data.models.Ingredient;
 import com.laaptu.baking.data.models.Step;
-import com.laaptu.baking.ui.recipedetail.steps.viewholders.IngredientsViewHolder;
-import com.laaptu.baking.ui.recipedetail.steps.viewholders.StepViewHolder;
+import com.laaptu.baking.ui.recipedetail.steps.list.viewholders.IngredientsViewHolder;
+import com.laaptu.baking.ui.recipedetail.steps.list.viewholders.StepViewHolder;
 import com.squareup.otto.Bus;
 
 import java.util.List;

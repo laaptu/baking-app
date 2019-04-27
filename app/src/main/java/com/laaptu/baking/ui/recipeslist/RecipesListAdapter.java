@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.laaptu.baking.R;
-import com.laaptu.baking.common.BaseViewHolder;
+import com.laaptu.baking.common.ui.BaseViewHolder;
 import com.laaptu.baking.common.image.ImageLoadOptions;
 import com.laaptu.baking.common.image.ImageLoader;
 import com.laaptu.baking.data.models.Recipe;

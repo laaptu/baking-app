@@ -1,12 +1,9 @@
 package com.laaptu.baking.ui.splash;
 
-import android.widget.Toast;
-
 import com.laaptu.baking.R;
-import com.laaptu.baking.common.AutoInjectActivity;
+import com.laaptu.baking.common.ui.AutoInjectActivity;
 import com.laaptu.baking.data.models.Recipe;
 import com.laaptu.baking.ui.recipeslist.RecipesListActivity;
-import com.laaptu.baking.utils.GeneralUtils;
 
 import java.util.List;
 

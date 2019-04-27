@@ -1,4 +1,4 @@
-package com.laaptu.baking.common;
+package com.laaptu.baking.common.ui;
 
 import android.view.View;
 

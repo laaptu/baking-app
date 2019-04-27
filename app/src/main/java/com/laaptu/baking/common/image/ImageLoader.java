@@ -8,6 +8,8 @@ import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import static com.laaptu.baking.utils.GeneralUtils.isValidUrl;
+
 @Singleton
 public class ImageLoader {
     @Inject
@@ -16,7 +18,7 @@ public class ImageLoader {
     }
 
     public void loadImage(ImageLoadOptions imageLoadOptions, ImageView imageView) {
-        if (URLUtil.isValidUrl(imageLoadOptions.url))
+        if (isValidUrl(imageLoadOptions.url))
             Picasso.get()
                 .load(imageLoadOptions.url)
                 .placeholder(imageLoadOptions.placeHolderDrawableId)

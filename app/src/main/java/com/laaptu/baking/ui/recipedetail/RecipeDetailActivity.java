@@ -5,29 +5,31 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.laaptu.baking.R;
-import com.laaptu.baking.common.AutoInjectActivity;
+import com.laaptu.baking.common.ui.AutoInjectActivity;
 import com.laaptu.baking.data.models.Recipe;
+import com.laaptu.baking.data.models.Step;
 import com.laaptu.baking.ui.recipedetail.steps.RecipeStepsAdapter;
-import com.laaptu.baking.ui.recipeslist.RecipesListActivity;
+import com.laaptu.baking.ui.recipedetail.steps.detail.StepDetailFragment;
+import com.laaptu.baking.ui.recipedetail.steps.detail.activity.StepDetailActivity;
+import com.laaptu.baking.ui.recipedetail.steps.list.data.StepClickedItem;
 import com.laaptu.baking.ui.recipeslist.SpacingDecorator;
 import com.laaptu.baking.ui.recipeslist.SpacingDecorator.Arrangement;
-import com.laaptu.baking.utils.GeneralUtils;
+import com.squareup.otto.Subscribe;
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
-import static androidx.recyclerview.widget.LinearLayoutManager.*;
+import static com.laaptu.baking.utils.Extras.RECIPE;
 
 public class RecipeDetailActivity extends AutoInjectActivity {
 
-    private static final String RECIPE = "recipe";
+    private static final String SELECTED_STEP_POSITION = "selected-step-position";
+    private int selectedStepPosition = 0;
 
     public static Intent getLaunchingIntent(Context context, Recipe recipe) {
         Intent intent = new Intent(context, RecipeDetailActivity.class);
@@ -63,6 +65,7 @@ public class RecipeDetailActivity extends AutoInjectActivity {
         getSupportActionBar().setTitle(recipe.name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         showRecipeSteps();
+        restoreSelectedStepPositionForTablet(savedInstanceState);
     }
 
     private void showRecipeSteps() {
@@ -74,5 +77,37 @@ public class RecipeDetailActivity extends AutoInjectActivity {
                 eventBus));
     }
 
+    private void restoreSelectedStepPositionForTablet(Bundle savedInstanceState) {
+        if (savedInstanceState != null && savedInstanceState.containsKey(SELECTED_STEP_POSITION)) {
+            selectedStepPosition =
+                    savedInstanceState.getInt(SELECTED_STEP_POSITION, selectedStepPosition);
+        }
+        setSelectedPosition(selectedStepPosition);
+    }
 
+    @Subscribe
+    public void onStepClicked(StepClickedItem stepClickedItem) {
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            setSelectedPosition(stepClickedItem.position);
+        } else {
+            startActivity(StepDetailActivity.getLaunchingIntent(
+                    this, recipe.name, recipe.steps, stepClickedItem.position));
+        }
+    }
+
+    private void setSelectedPosition(int selectedStepPosition) {
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            this.selectedStepPosition = selectedStepPosition;
+            Step selectedStep = recipe.steps.get(selectedStepPosition);
+            StepDetailFragment stepDetailFragment = StepDetailFragment.getInstance(selectedStep);
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.step_detail_container, stepDetailFragment).commit();
+            getSupportActionBar().setSubtitle(selectedStep.shortDescription);
+        }
+    }
+
+    @Override protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(SELECTED_STEP_POSITION, selectedStepPosition);
+        super.onSaveInstanceState(outState);
+    }
 }

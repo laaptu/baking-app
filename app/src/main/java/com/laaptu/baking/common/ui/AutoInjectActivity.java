@@ -1,4 +1,4 @@
-package com.laaptu.baking.common;
+package com.laaptu.baking.common.ui;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,15 +10,22 @@ import javax.inject.Inject;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public abstract class AutoInjectActivity extends AppCompatActivity {
+public abstract class AutoInjectActivity extends AppCompatActivity implements
+        HasSupportFragmentInjector {
+
+    @Inject DispatchingAndroidInjector<Fragment> supportFragmentInjector;
 
     public abstract int getLayoutId();
 
@@ -73,4 +80,7 @@ public abstract class AutoInjectActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override public AndroidInjector<Fragment> supportFragmentInjector() {
+        return supportFragmentInjector;
+    }
 }

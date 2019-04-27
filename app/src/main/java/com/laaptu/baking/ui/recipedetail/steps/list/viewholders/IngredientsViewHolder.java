@@ -1,10 +1,10 @@
-package com.laaptu.baking.ui.recipedetail.steps.viewholders;
+package com.laaptu.baking.ui.recipedetail.steps.list.viewholders;
 
 import android.view.View;
 import android.widget.TextView;
 
 import com.laaptu.baking.R;
-import com.laaptu.baking.common.BaseViewHolder;
+import com.laaptu.baking.common.ui.BaseViewHolder;
 import com.laaptu.baking.data.models.Ingredient;
 
 import java.util.List;

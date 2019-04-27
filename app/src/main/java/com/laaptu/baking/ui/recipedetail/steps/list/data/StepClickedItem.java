@@ -1,4 +1,4 @@
-package com.laaptu.baking.ui.recipedetail.steps.data;
+package com.laaptu.baking.ui.recipedetail.steps.list.data;
 
 public class StepClickedItem {
     public int position;

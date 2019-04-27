@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.laaptu.baking.R;
-import com.laaptu.baking.common.AutoInjectActivity;
+import com.laaptu.baking.common.ui.AutoInjectActivity;
 import com.laaptu.baking.common.image.ImageLoader;
 import com.laaptu.baking.data.models.Recipe;
 import com.laaptu.baking.ui.recipedetail.RecipeDetailActivity;
 import com.laaptu.baking.ui.recipeslist.SpacingDecorator.Arrangement;
+import com.laaptu.baking.utils.Extras;
 import com.squareup.otto.Subscribe;
 
 import org.parceler.Parcels;
@@ -25,11 +26,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
+import static com.laaptu.baking.utils.Extras.RECIPES;
 import static com.laaptu.baking.utils.GeneralUtils.isRecipesValid;
 
 public class RecipesListActivity extends AutoInjectActivity {
-
-    private static final String RECIPES = "recipes";
 
     public static Intent getLaunchingIntent(Context context, List<Recipe> recipes) {
         Intent intent = new Intent(context, RecipesListActivity.class);
@@ -77,17 +77,18 @@ public class RecipesListActivity extends AutoInjectActivity {
         int spacing = (int) getResources().getDimension(R.dimen.item_space);
         if (isTablet) {
             rvRecipesList.setLayoutManager(
-                new GridLayoutManager(this, 3));
+                    new GridLayoutManager(this, 3));
             rvRecipesList.addItemDecoration(new SpacingDecorator(spacing, Arrangement.GRID));
         } else {
             rvRecipesList.setLayoutManager
-                (new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+                    (new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
             rvRecipesList.addItemDecoration(new SpacingDecorator(spacing, Arrangement.VERTICAL));
         }
     }
 
     private void populateViewWithRecipes(List<Recipe> recipes) {
-        RecipesListAdapter recipesListAdapter = new RecipesListAdapter(recipes, imageLoader, eventBus);
+        RecipesListAdapter recipesListAdapter =
+                new RecipesListAdapter(recipes, imageLoader, eventBus);
         rvRecipesList.setAdapter(recipesListAdapter);
     }
 

@@ -1,11 +1,11 @@
-package com.laaptu.baking.ui.recipedetail.steps.viewholders;
+package com.laaptu.baking.ui.recipedetail.steps.list.viewholders;
 
 import android.view.View;
 import android.widget.TextView;
 
 import com.laaptu.baking.R;
-import com.laaptu.baking.common.BaseViewHolder;
-import com.laaptu.baking.ui.recipedetail.steps.data.StepClickedItem;
+import com.laaptu.baking.common.ui.BaseViewHolder;
+import com.laaptu.baking.ui.recipedetail.steps.list.data.StepClickedItem;
 import com.squareup.otto.Bus;
 
 import java.util.Locale;
@@ -31,7 +31,7 @@ public class StepViewHolder extends BaseViewHolder {
 
     public void bindView(String shortDescription, int position) {
         this.position = position;
-        txtStepOrder.setText(String.format(Locale.getDefault(), "%d.", position + 1));
+        txtStepOrder.setText(String.format(Locale.getDefault(), "%d.", position ));
         txtStepName.setText(shortDescription);
     }
 
