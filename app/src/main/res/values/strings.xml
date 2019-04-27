@@ -17,4 +17,6 @@
     <string name="ingredients">Ingredients</string>
     <string name="accessibility_step_image">This is recipe step image</string>
     <string name="error_no_recipe_steps">There aren\'t any recipe steps to show</string>
+    <string name="select_a_recipe">Please select a recipe to view steps</string>
+    <string name="add_to_widget">Add To Widget</string>
 </resources>

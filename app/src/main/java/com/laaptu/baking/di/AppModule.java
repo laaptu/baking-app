@@ -15,19 +15,19 @@ import dagger.Provides;
 @Module
 public class AppModule {
     @Provides
-    static Context getAppContext() {
+    public static Context getAppContext() {
         return BakingApplication.getAppContext();
     }
 
     @Provides
-    static Gson getGson() {
+    public static Gson getGson() {
         return new GsonBuilder()
             .create();
     }
 
     @Singleton
     @Provides
-    static Bus getBus() {
+    public static Bus getBus() {
         return new Bus();
     }
 

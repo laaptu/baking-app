@@ -27,8 +27,25 @@
         <activity
             android:name=".ui.recipeslist.RecipesListActivity"
             android:label="@string/recipes_list"/>
-        <activity android:name=".ui.recipedetail.RecipeDetailActivity"/>
+        <activity
+            android:name=".ui.recipedetail.RecipeDetailActivity"
+            android:launchMode="singleTop"/>
         <activity android:name=".ui.recipedetail.steps.detail.presentation.StepDetailActivity"/>
+
+        <!--App Widgets-->
+        <receiver android:name=".widget.AppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_recipe"/>
+        </receiver>
+        <service
+            android:name=".widget.AppWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
     </application>
 
 </manifest>

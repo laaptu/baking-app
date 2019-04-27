@@ -61,6 +61,6 @@ public class LocalRecipeProvider {
             editor.apply();
             return true;
         }
-        return true;
+        return false;
     }
 }

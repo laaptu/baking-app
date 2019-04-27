@@ -3,6 +3,8 @@ package com.laaptu.baking.ui.recipedetail;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.laaptu.baking.R;
 import com.laaptu.baking.common.ui.AutoInjectActivity;
@@ -14,9 +16,12 @@ import com.laaptu.baking.ui.recipedetail.steps.detail.presentation.StepDetailAct
 import com.laaptu.baking.ui.recipedetail.steps.list.data.StepClickedItem;
 import com.laaptu.baking.ui.recipeslist.SpacingDecorator;
 import com.laaptu.baking.ui.recipeslist.SpacingDecorator.Arrangement;
+import com.laaptu.baking.widget.WidgetUpdater;
 import com.squareup.otto.Subscribe;
 
 import org.parceler.Parcels;
+
+import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +51,7 @@ public class RecipeDetailActivity extends AutoInjectActivity {
     }
 
     @BindView(R.id.rv_recipe_steps) RecyclerView rvRecipeSteps;
+    @Inject WidgetUpdater widgetUpdater;
     private Recipe recipe;
 
     @Override
@@ -56,16 +62,27 @@ public class RecipeDetailActivity extends AutoInjectActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        recipe = getRecipeFromIntent(getIntent());
+        if (init(getIntent())) {
+            restoreSelectedStepPositionForTablet(savedInstanceState);
+        }
+    }
+
+    @Override protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        init(intent);
+    }
+
+    private boolean init(Intent intent) {
+        recipe = getRecipeFromIntent(intent);
         if (recipe == null) {
             showToast(getString(R.string.error_recipe_not_provided));
             finish();
-            return;
+            return false;
         }
         getSupportActionBar().setTitle(recipe.name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         showRecipeSteps();
-        restoreSelectedStepPositionForTablet(savedInstanceState);
+        return true;
     }
 
     private void showRecipeSteps() {
@@ -109,5 +126,17 @@ public class RecipeDetailActivity extends AutoInjectActivity {
     @Override protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putInt(SELECTED_STEP_POSITION, selectedStepPosition);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_widget_menu, menu);
+        return true;
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_add_to_widget) {
+            widgetUpdater.updateWidget(this, recipe);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
