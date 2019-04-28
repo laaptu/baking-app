@@ -76,12 +76,16 @@ public class StepDetailFragment extends BaseFragment {
 
     @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        playerPosition = getPlayerPosition(savedInstanceState);
+    }
+
+    @Override public void onResume() {
+        super.onResume();
         step = getStepFromIntent(getArguments());
         if (step == null) {
             Timber.e("Doesn't contain any valid Step");
             return;
         }
-        playerPosition = getPlayerPosition(savedInstanceState);
         setupView();
     }
 
